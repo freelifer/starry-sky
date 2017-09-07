@@ -9,8 +9,8 @@ import Avatar from 'material-ui/Avatar';
 import List from 'material-ui/List';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
-import { mailFolderListItems, otherMailFolderListItems } from './tileData';
-import { Layout } from './components/index.js';
+import { mailFolderListItems, otherMailFolderListItems } from '../../tileData';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -91,7 +91,9 @@ function PermanentDrawer(props) {
           <Typography type="body1" noWrap>
             {'You think water moves fast? You should see ice.'}
           </Typography>
-        <Layout.Footer />
+          <Link to="/hello">
+  Hello
+</Link>
         </main>
 
       </div>
