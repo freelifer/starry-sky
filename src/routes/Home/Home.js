@@ -11,6 +11,7 @@ import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import { mailFolderListItems, otherMailFolderListItems } from '../../tileData';
 import { Link } from 'react-router-dom';
+import { Layout } from '../../components/index.js';
 
 const drawerWidth = 240;
 
@@ -37,6 +38,7 @@ const styles = theme => ({
     position: 'relative',
     height: 'auto',
     width: drawerWidth,
+    marginTop: 64,
   },
   drawerHeader: {
     height: 56,
@@ -66,15 +68,7 @@ function PermanentDrawer(props) {
   return (
     <div className={classes.root}>
       <div className={classes.appFrame}>
-        <AppBar className={classes.appBar}>
-          <Toolbar>
-            <Typography type="title" color="inherit" noWrap>
-              Permanent drawer
-            </Typography>
-
-            <Avatar alt="Remy Sharp" src="remy.jpg" className={classes.avatar} />
-          </Toolbar>
-        </AppBar>
+        <Layout.Header avatar={classes.avatar}/>
         <Drawer
           type="permanent"
           classes={{
