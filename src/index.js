@@ -1,24 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import { Home } from './routes/index';
+import PermanentDrawer from './components/PermanentDrawer'
+import { App, Home } from './routes/index';
 import registerServiceWorker from './registerServiceWorker';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
 
-class SliderComponent extends React.Component {
-	render(){
-		return(
-			<div>
-				{ this.props.children }
-			</div>);
-	}
-}
 ReactDOM.render(
 	<BrowserRouter>
-		<SliderComponent>
-			<Route path="/" component={Home}></Route>
-		</SliderComponent>
+	  <Switch>
+		<Route exact path="/" component={App}/>
+		<PermanentDrawer>
+			<Route path="/app" component={App}></Route>
+		</PermanentDrawer>
+	  </Switch>
 	</BrowserRouter>
 	, document.getElementById('root'));
 registerServiceWorker();

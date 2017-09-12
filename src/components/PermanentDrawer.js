@@ -1,3 +1,4 @@
+// @flow weak
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -5,13 +6,17 @@ import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import Avatar from 'material-ui/Avatar';
+import Menu, { MenuItem, IconMenu } from 'material-ui/Menu';
+import Button from 'material-ui/Button';
+import IconButton from 'material-ui/IconButton';
+import MenuIcon from 'material-ui-icons/Menu';
+import MoreVertIcon from 'material-ui-icons/MoreVert';
+
 import List from 'material-ui/List';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
-import { mailFolderListItems, otherMailFolderListItems } from '../../tileData';
+import { mailFolderListItems, otherMailFolderListItems } from '../tileData';
 import { Link } from 'react-router-dom';
-import { Layout } from '@/components/index.js';
 
 const drawerWidth = 240;
 
@@ -19,6 +24,7 @@ const styles = theme => ({
   root: {
     width: '100%',
     height: 430,
+    marginTop: theme.spacing.unit * 3,
     zIndex: 1,
     overflow: 'hidden',
   },
@@ -38,16 +44,12 @@ const styles = theme => ({
     position: 'relative',
     height: 'auto',
     width: drawerWidth,
-    marginTop: 64,
   },
   drawerHeader: {
     height: 56,
     [theme.breakpoints.up('sm')]: {
       height: 64,
     },
-  },
-  avatar: {
-    margin: 10,
   },
   content: {
     backgroundColor: theme.palette.background.default,
@@ -62,13 +64,23 @@ const styles = theme => ({
   },
 });
 
-function PermanentDrawer(props) {
-  const { classes } = props;
-  
-  return (
-    <div className={classes.root}>
+class PermanentDrawer extends React.Component {
+
+  render() {
+    var classes = this.props.classes;
+    return (
+      <div className={classes.root}>
       <div className={classes.appFrame}>
-        <Layout.Header avatar={classes.avatar}/>
+        <AppBar className={classes.appBar}>
+          <Toolbar>
+            <Typography type="title" color="inherit" noWrap>
+              Permanent drawer
+            </Typography>
+            <IconButton color="contrast" aria-label="Menu">
+              <MoreVertIcon/>
+            </IconButton>
+          </Toolbar>
+        </AppBar>
         <Drawer
           type="permanent"
           classes={{
@@ -82,21 +94,12 @@ function PermanentDrawer(props) {
           <List>{otherMailFolderListItems}</List>
         </Drawer>
         <main className={classes.content}>
-          <Typography type="body1" noWrap>
-            {'You think water moves fast? You should see ice.'}
-          </Typography>
-          <Link to="/hello">
-  Hello
-</Link>
+          { this.props.children }
         </main>
-
       </div>
-    </div>
-  );
+      </div>
+    );
+  }
 }
-
-PermanentDrawer.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(PermanentDrawer);
