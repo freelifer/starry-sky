@@ -5,15 +5,12 @@ import PermanentDrawer from './components/PermanentDrawer'
 import { App, Home } from './routes/index';
 import registerServiceWorker from './registerServiceWorker';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import MainFrame from './routes/Router'
+
 
 ReactDOM.render(
 	<BrowserRouter>
-	  <Switch>
-		<Route exact path="/" component={App}/>
-		<PermanentDrawer>
-			<Route path="/app" component={App}></Route>
-		</PermanentDrawer>
-	  </Switch>
+        <MainFrame />
 	</BrowserRouter>
 	, document.getElementById('root'));
 registerServiceWorker();
